@@ -15,6 +15,6 @@ export const MyButton = styled.button`
   }
   &:active {
     background-color: #767575;
-    box-shadow: 0 5px #666;
+    box-shadow: 0 5px #eeeeee;
   }
 `;
