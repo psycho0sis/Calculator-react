@@ -30,13 +30,16 @@ aside {
 
 html,
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
   height: 100%;
   width: 100%;
   font-size: 100%;
   line-height: 1;
-  font-size: 14px;
+  font-size: 16px;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -82,6 +85,10 @@ h5,
 h6 {
   font-size: inherit;
   font-weight: 300;
+}
+
+#root {
+  flex: 1 1 auto;
 }
 
 .linkDiactive {

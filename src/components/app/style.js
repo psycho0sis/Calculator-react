@@ -4,10 +4,6 @@ export const Container = styled.div`
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  box-shadow: -3px 6px 41px -17px rgba(94, 95, 96, 0.23);
+  border-radius: 30px;
 `;
-
-// "paths": {
-//     "components/*": ["src/components/*"],
-//     "screens/*": ["src/screens/*"],
-//     "utils/*": ["src/utils/*"]
-//   }
