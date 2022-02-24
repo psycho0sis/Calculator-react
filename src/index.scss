@@ -31,6 +31,7 @@ aside {
 html,
 body {
   font-family: 'Poppins', sans-serif;
+  font-weight: 300;
   height: 100%;
   width: 100%;
   font-size: 100%;
@@ -43,14 +44,16 @@ body {
 
 input,
 button,
-textarea {
+textarea,
+select {
   font-family: inherit;
 }
 
 input::-ms-clear {
   display: none;
 }
-button {
+button,
+select {
   cursor: pointer;
 }
 button::-moz-focus-inner {
@@ -78,5 +81,15 @@ h4,
 h5,
 h6 {
   font-size: inherit;
-  font-weight: 400;
+  font-weight: 300;
+}
+
+.linkDiactive {
+  color: rgb(206, 204, 204);
+  letter-spacing: 1.4px;
+}
+
+.linkDiactive.linkActive {
+  color: #fff;
+  text-decoration: underline;
 }
