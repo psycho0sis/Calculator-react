@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { Container, List, Title } from 'components/header/style';
-import 'index.scss';
 
 const Header = () => {
   return (

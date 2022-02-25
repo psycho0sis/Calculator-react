@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import KeyPad from 'components/keypad/index';
 import Button from 'containers/button/index';
 
-import { Grid, Container, Flex } from './style';
+import { Container, Flex } from './style';
 
 class ControlPanel extends Component {
   constructor(props) {
@@ -12,23 +12,18 @@ class ControlPanel extends Component {
   }
 
   render() {
-    const { handleClick } = this.props;
     return (
       <Container>
         <Flex>
-          <Button value="C" handleClick={handleClick} />
-          <Button value="-" handleClick={handleClick} />
-          <Button value="+" handleClick={handleClick} />
-          <Button value="." handleClick={handleClick} />
+          {['C', '-', '+', '.'].map((button) => {
+            return <Button key={button} value={button} {...this.props} />;
+          })}
         </Flex>
-        <Grid>
-          <KeyPad handleClick={handleClick} />
-        </Grid>
+        <KeyPad {...this.props} />
         <Flex>
-          <Button value="*" handleClick={handleClick} />
-          <Button value="\" handleClick={handleClick} />
-          <Button value="=" handleClick={handleClick} />
-          <Button value="CE" handleClick={handleClick} />
+          {['*', '\\', '=', 'CE'].map((button) => {
+            return <Button key={button} value={button} {...this.props} />;
+          })}
         </Flex>
       </Container>
     );
