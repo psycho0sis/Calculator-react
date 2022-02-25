@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { DisplayText } from './style';
 
-const Display = () => {
-  return (
-    <DisplayText>
-      <div>here is a display</div>
-    </DisplayText>
-  );
-};
+class Display extends Component {
+  constructor(props) {
+    super(props);
+  }
 
+  render() {
+    const { firstValue } = this.props;
+    return <DisplayText>{firstValue}</DisplayText>;
+  }
+}
+
+Display.propTypes = {
+  firstValue: PropTypes.string
+};
 export default Display;

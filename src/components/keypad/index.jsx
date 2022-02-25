@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { MyButton } from 'containers/button/style';
+import Button from 'containers/button/index';
 
-const KeyPad = () => {
-  return (
-    <>
-      <MyButton>9</MyButton>
-      <MyButton>8</MyButton>
-      <MyButton>7</MyButton>
-      <MyButton>6</MyButton>
-      <MyButton>5</MyButton>
-      <MyButton>4</MyButton>
-      <MyButton>3</MyButton>
-      <MyButton>2</MyButton>
-      <MyButton>1</MyButton>
-      <MyButton>(</MyButton>
-      <MyButton>0</MyButton>
-      <MyButton>)</MyButton>
-    </>
-  );
+class KeyPad extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const { handleClick } = this.props;
+    return (
+      <>
+        <Button value="9" handleClick={handleClick} />
+        <Button value="8" handleClick={handleClick} />
+        <Button value="7" handleClick={handleClick} />
+        <Button value="6" handleClick={handleClick} />
+        <Button value="5" handleClick={handleClick} />
+        <Button value="4" handleClick={handleClick} />
+        <Button value="3" handleClick={handleClick} />
+        <Button value="2" handleClick={handleClick} />
+        <Button value="1" handleClick={handleClick} />
+        <Button value="(" handleClick={handleClick} />
+        <Button value="0" handleClick={handleClick} />
+        <Button value=")" handleClick={handleClick} />
+      </>
+    );
+  }
+}
+
+KeyPad.propTypes = {
+  handleClick: PropTypes.func
 };
 
 export default KeyPad;

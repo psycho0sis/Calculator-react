@@ -7,10 +7,10 @@ export const Container = styled.div`
   &::before {
     position: absolute;
     content: '';
-    top: 10%;
+    top: 2%;
     left: 4%;
     width: 1px;
-    height: 560px;
+    height: 590px;
     background: #929292;
   }
 `;

@@ -1,30 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import KeyPad from 'components/keypad/index';
 import Button from 'containers/button/index';
 
 import { Grid, Container, Flex } from './style';
 
-const ControlPanel = () => {
-  return (
-    <Container>
-      <Flex>
-        <Button value="C" />
-        <Button value="-" />
-        <Button value="+" />
-        <Button value="." />
-      </Flex>
-      <Grid>
-        <KeyPad />
-      </Grid>
-      <Flex>
-        <Button value="*" />
-        <Button value="\" />
-        <Button value="=" />
-        <Button value="CE" />
-      </Flex>
-    </Container>
-  );
+class ControlPanel extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const { handleClick } = this.props;
+    return (
+      <Container>
+        <Flex>
+          <Button value="C" handleClick={handleClick} />
+          <Button value="-" handleClick={handleClick} />
+          <Button value="+" handleClick={handleClick} />
+          <Button value="." handleClick={handleClick} />
+        </Flex>
+        <Grid>
+          <KeyPad handleClick={handleClick} />
+        </Grid>
+        <Flex>
+          <Button value="*" handleClick={handleClick} />
+          <Button value="\" handleClick={handleClick} />
+          <Button value="=" handleClick={handleClick} />
+          <Button value="CE" handleClick={handleClick} />
+        </Flex>
+      </Container>
+    );
+  }
+}
+
+ControlPanel.propTypes = {
+  handleClick: PropTypes.func
 };
 
 export default ControlPanel;

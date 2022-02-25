@@ -7,12 +7,19 @@ class Button extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
-    return <MyButton>{this.props.value}</MyButton>;
+    const { value, handleClick } = this.props;
+    return (
+      <MyButton onClick={handleClick} value={value} key={value}>
+        {value}
+      </MyButton>
+    );
   }
 }
 
 Button.propTypes = {
-  value: PropTypes.string
+  value: PropTypes.string,
+  handleClick: PropTypes.func
 };
 export default Button;

@@ -1,18 +1,14 @@
 import React from 'react';
 
-import Display from 'components/display/index';
 import History from 'components/history/index';
-import ControlPanel from 'components/controlPanel/index';
+import Container from 'containers/container/index';
 
-import { Container, FlexContainer, Grid } from './style';
+import { FlexContainer } from './style';
 
 const Home = () => {
   return (
     <FlexContainer>
-      <Container>
-        <Display />
-        <ControlPanel />
-      </Container>
+      <Container />
       <History />
     </FlexContainer>
   );
