@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as variables from 'variables';
 
 export const Container = styled.div`
   flex: 0 1 20%;
@@ -17,6 +18,7 @@ export const Container = styled.div`
 
 export const Title = styled.h2`
   text-align: center;
-  font-size: 18px;
+  font-size: ${variables.FS_MEDIUM};
+  color: ${({ theme }) => theme.text};
   margin: 20px 0 20px;
 `;

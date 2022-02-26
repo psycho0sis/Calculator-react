@@ -1,4 +1,5 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+import * as variables from 'variables.js';
 
 export const Global = createGlobalStyle`
   * {
@@ -33,19 +34,18 @@ export const Global = createGlobalStyle`
 
   html,
   body {
+    color: ${({ theme }) => theme.text};
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Poppins', sans-serif;
-    font-weight: 300;
+    font-weight: ${variables.FW_LIGHT};
     height: 100%;
     width: 100%;
     font-size: 100%;
     line-height: 1;
-    font-size: 16px;
-    -ms-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
+    font-size: ${variables.FS_SMALL};
+    transition: all 0.50s linear;
   }
 
   input,
@@ -95,12 +95,14 @@ export const Global = createGlobalStyle`
   }
 
   .linkDiactive {
-    color: rgb(206, 204, 204);
+    font-size: ${variables.FS_REGULAR};
+    color: ${({ theme }) => theme.text};
     letter-spacing: 1.4px;
   }
 
   .linkDiactive.linkActive {
-    color: #fff;
+    font-size: ${variables.FS_REGULAR};
+    color: ${({ theme }) => theme.text};
     text-decoration: underline;
   }
 

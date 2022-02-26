@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Container, Title, Button, CustomSelect, Label } from './style';
+import { ThemeToggler } from 'components/themeToggler/ThemeToggler';
 
 const Settings = () => {
   return (
@@ -7,14 +9,9 @@ const Settings = () => {
       <Title>Settings</Title>
       <Label htmlFor="standard-select">Swith theme</Label>
       <CustomSelect id="standard-select" className="select-dropdown">
-        <select>
-          <option value="0" defaultChecked>
-            Light theme
-          </option>
-          <option value="1">Colored theme</option>
-          <option value="2">Dark theme</option>
-        </select>
+        <ThemeToggler />
       </CustomSelect>
+
       <Button>Clear All History</Button>
     </Container>
   );
