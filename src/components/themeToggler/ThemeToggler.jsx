@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ThemeContext } from 'components/app/index';
+import { ThemeContext } from 'context/themeContext';
 
 export const ThemeToggler = () => {
   const context = useContext(ThemeContext);

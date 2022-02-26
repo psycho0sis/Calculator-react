@@ -12,11 +12,7 @@ import { Global } from 'globalStyle';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme, coloredTheme } from 'theme';
 
-export const ThemeContext = React.createContext({
-  theme: '',
-  val: 'lightTheme',
-  selectTheme: () => {}
-});
+import { ThemeContext } from 'context/themeContext';
 
 class App extends Component {
   constructor(props) {
