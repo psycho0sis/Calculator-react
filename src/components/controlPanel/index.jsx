@@ -12,17 +12,36 @@ class ControlPanel extends Component {
   }
 
   render() {
+    console.log('from controlPanel', this.props);
+    const buttons = [
+      [
+        { id: 1, context: 'C', type: 'function' },
+        { id: 2, context: '-', type: 'operation' },
+        { id: 3, context: '+', type: 'operation' },
+        { id: 4, context: '.' }
+      ],
+      [
+        { id: 1, context: '*', type: 'operation' },
+        { id: 2, context: '\\', type: 'operation' },
+        { id: 3, context: '=', type: 'operation' },
+        { id: 4, context: 'CE', type: 'function' }
+      ]
+    ];
     return (
       <Container>
         <Flex>
-          {['C', '-', '+', '.'].map((button) => {
-            return <Button key={button} value={button} {...this.props} />;
+          {buttons[0].map((button) => {
+            return (
+              <Button key={button.id} value={button.context} type={button.type} {...this.props} />
+            );
           })}
         </Flex>
         <KeyPad {...this.props} />
         <Flex>
-          {['*', '\\', '=', 'CE'].map((button) => {
-            return <Button key={button} value={button} {...this.props} />;
+          {buttons[1].map((button) => {
+            return (
+              <Button key={button.id} value={button.context} type={button.type} {...this.props} />
+            );
           })}
         </Flex>
       </Container>

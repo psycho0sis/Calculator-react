@@ -14,7 +14,8 @@ class Container extends Component {
       firstValue: '',
       secondValue: '',
       sign: '',
-      finish: false
+      finish: false,
+      history: this.calculator.history
     };
   }
 
@@ -30,6 +31,13 @@ class Container extends Component {
       }
       case 'CE': {
         this.setState({ firstValue: '', secondValue: '', sign: '', finish: false });
+        break;
+      }
+      case '+': {
+        this.setState(({ firstValue, sign }) => ({
+          firstValue: firstValue + e.target.value,
+          sign: sign + e.target.value
+        }));
         break;
       }
       default: {

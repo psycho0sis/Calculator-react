@@ -10,10 +10,25 @@ class KeyPad extends Component {
     super(props);
   }
   render() {
+    console.log('from keypad', this.props);
+    const buttons = [
+      { id: 1, context: '9' },
+      { id: 2, context: '8' },
+      { id: 3, context: '7' },
+      { id: 4, context: '6' },
+      { id: 5, context: '5' },
+      { id: 6, context: '4' },
+      { id: 7, context: '3' },
+      { id: 8, context: '2' },
+      { id: 9, context: '1' },
+      { id: 10, context: '(' },
+      { id: 11, context: '0' },
+      { id: 12, context: ')' }
+    ];
     return (
       <Grid>
-        {['9', '8', '7', '6', '5', '4', '3', '2', '1', '(', '0', ')'].map((button) => {
-          return <Button key={button} value={button} {...this.props} />;
+        {buttons.map((button) => {
+          return <Button key={button.id} value={button.context} {...this.props} />;
         })}
       </Grid>
     );

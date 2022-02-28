@@ -13,11 +13,28 @@ export const MyButton = styled.button`
   border: 1px solid #929292;
   transition: 0.3s all ease;
   &:hover {
-    background: ${({ theme }) => theme.hover};
+    opacity: 0.8;
     transform: scale(0.98);
   }
   &:active {
     background: ${({ theme }) => theme.hover};
     box-shadow: 0 5px #eeeeee;
+  }
+  &.operation,
+  &.function {
+    &:hover {
+      opacity: 0.8;
+      transform: scale(0.98);
+    }
+    &:active {
+      background: ${({ theme }) => theme.hover};
+      box-shadow: 0 5px #eeeeee;
+    }
+  }
+  &.operation {
+    background: ${({ theme }) => theme.operation};
+  }
+  &.function {
+    background: ${({ theme }) => theme.function};
   }
 `;

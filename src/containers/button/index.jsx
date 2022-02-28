@@ -9,9 +9,15 @@ class Button extends Component {
   }
 
   render() {
-    const { value, handleClick } = this.props;
+    const { value, handleClick, type } = this.props;
+    console.log(this.props);
     return (
-      <MyButton onClick={handleClick} value={value} key={value}>
+      <MyButton
+        className={`${type || ''}`}
+        onClick={handleClick}
+        value={value}
+        key={value}
+        type={type}>
         {value}
       </MyButton>
     );
@@ -20,6 +26,7 @@ class Button extends Component {
 
 Button.propTypes = {
   value: PropTypes.string,
-  handleClick: PropTypes.func
+  handleClick: PropTypes.func,
+  type: PropTypes.string
 };
 export default Button;
