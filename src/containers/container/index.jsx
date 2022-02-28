@@ -13,6 +13,7 @@ import Calculator, {
 import isEnd from 'utils/isEnd';
 
 import { Wrapper } from './style';
+import ErrorBoundary from 'errorBoundary/errorBoundary';
 
 class Container extends Component {
   constructor(props) {
@@ -28,21 +29,26 @@ class Container extends Component {
   calculator = new Calculator();
 
   setMemory = (memory, operator, firstValue) => {
-    return operator !== null
-      ? operator === '+'
-        ? this.calculator.executeCommand(new AddCommand(memory))
-        : operator === '-'
-        ? this.calculator.executeCommand(new SubtractCommand(memory))
-        : operator === '*'
-        ? this.calculator.executeCommand(new MultiplyCommand(memory))
-        : operator === '/'
-        ? this.calculator.executeCommand(new DivideCommand(memory))
-        : null
-      : parseFloat(firstValue);
+    try {
+      return operator !== null
+        ? operator === '+'
+          ? this.calculator.executeCommand(new AddCommand(memory))
+          : operator === '-'
+          ? this.calculator.executeCommand(new SubtractCommand(memory))
+          : operator === '*'
+          ? this.calculator.executeCommand(new MultiplyCommand(memory))
+          : operator === '/'
+          ? this.calculator.executeCommand(new DivideCommand(memory))
+          : null
+        : parseFloat(firstValue);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   handleClick = (content) => () => {
     const { firstValue } = this.state;
+
     switch (content) {
       case 'C': {
         this.setState(({ firstValue }) => ({
@@ -55,6 +61,7 @@ class Container extends Component {
         break;
       }
       case '+': {
+        if (this.state.firstValue === '0') break;
         this.setState(({ firstValue, memory, operator }) => ({
           memory: this.setMemory(memory, operator, firstValue),
           firstValue: '0',
@@ -63,6 +70,7 @@ class Container extends Component {
         break;
       }
       case '-': {
+        if (this.state.firstValue === '0') break;
         this.setState(({ firstValue, memory, operator }) => ({
           memory: this.setMemory(memory, operator, firstValue),
           firstValue: '0',
@@ -71,6 +79,7 @@ class Container extends Component {
         break;
       }
       case '*': {
+        if (this.state.firstValue === '0') break;
         this.setState(({ firstValue, memory, operator }) => ({
           memory: this.setMemory(memory, operator, firstValue),
           firstValue: '0',
@@ -79,6 +88,7 @@ class Container extends Component {
         break;
       }
       case '/': {
+        if (this.state.firstValue === '0') break;
         this.setState(({ firstValue, memory, operator }) => ({
           memory: this.setMemory(memory, operator, firstValue),
           firstValue: '0',
@@ -128,7 +138,9 @@ class Container extends Component {
     const { firstValue } = this.state;
     return (
       <Wrapper>
-        <Display firstValue={firstValue} />
+        <ErrorBoundary>
+          <Display firstValue={firstValue} />
+        </ErrorBoundary>
         <ControlPanel handleClick={this.handleClick} />
       </Wrapper>
     );

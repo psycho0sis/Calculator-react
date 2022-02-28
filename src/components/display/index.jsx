@@ -12,7 +12,7 @@ class Display extends Component {
 
   render() {
     const { firstValue } = this.props;
-    return <DisplayText>{firstValue}</DisplayText>;
+    return <DisplayText>{addSpaces(firstValue)}</DisplayText>;
   }
 }
 

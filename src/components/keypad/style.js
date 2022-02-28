@@ -6,4 +6,5 @@ export const Grid = styled.div`
   grid-column-gap: 90px;
   grid-row-gap: 30px;
   align-items: center;
+  grid-area: center;
 `;

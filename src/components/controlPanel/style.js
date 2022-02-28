@@ -1,14 +1,15 @@
 import styled from 'styled-components';
+import 'globalStyle';
 
 export const Container = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 30px 0;
-`;
+  display: grid;
 
-export const Flex = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 30px 0;
+  grid-template-areas:
+    'button_1 center button_5'
+    'button_2 center button_6'
+    'button_3 center button_7'
+    'button_4 center button_8';
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  padding: 30px 0;
 `;

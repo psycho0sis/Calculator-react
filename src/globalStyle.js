@@ -105,5 +105,29 @@ export const Global = createGlobalStyle`
     color: ${({ theme }) => theme.text};
     text-decoration: underline;
   }
+  .button_1 {
+    grid-area: button_1;
+  }
+   .button_2 {
+    grid-area: button_2;
+  }
+   .button_3 {
+    grid-area: button_3;
+  }
+   .button_4 {
+    grid-area: button_4;
+  }
+   .button_5 {
+    grid-area: button_5;
+  }
+   .button_6 {
+    grid-area: button_6;
+  }
+   .button_7 {
+    grid-area: button_7;
+  }
+   .button_8 {
+    grid-area: button_8;
+  }
 
 `;
