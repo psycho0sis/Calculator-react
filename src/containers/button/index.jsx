@@ -10,11 +10,10 @@ class Button extends Component {
 
   render() {
     const { value, handleClick, type } = this.props;
-    console.log(this.props);
     return (
       <MyButton
         className={`${type || ''}`}
-        onClick={handleClick}
+        onClick={handleClick(value)}
         value={value}
         key={value}
         type={type}>

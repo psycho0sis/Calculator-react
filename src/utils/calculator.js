@@ -1,6 +1,22 @@
+const add = (valueToAdd) => {
+  return parseFloat(value) + parseFloat(valueToAdd);
+};
+
+const subtract = (valueToSubtract) => {
+  return (parseFloat(value) - parseFloat(valueToSubtract)).toString();
+};
+
+const multiply = (valueToMultiply) => {
+  return (parseFloat(value) * parseFloat(valueToMultiply)).toString();
+};
+
+const divide = (valueToDivide) => {
+  return (parseFloat(value) / parseFloat(valueToDivide)).toString();
+};
+
 class Calculator {
   constructor() {
-    this.value = 0;
+    this.value = '0';
     this.history = [];
   }
 
@@ -13,22 +29,6 @@ class Calculator {
     const command = this.history.pop();
     this.value = command.undo(this.value);
   }
-
-  add(valueToAdd) {
-    this.value = this.value + valueToAdd;
-  }
-
-  subtract(valueToSubtract) {
-    this.value = this.value - valueToSubtract;
-  }
-
-  multiply(valueToMultiply) {
-    this.value = this.value * valueToMultiply;
-  }
-
-  divide(valueToDivide) {
-    this.value = this.value / valueToDivide;
-  }
 }
 
 export class AddCommand {
@@ -37,11 +37,11 @@ export class AddCommand {
   }
 
   execute(currentValue) {
-    return currentValue + this.valueToAdd;
+    return add(currentValue);
   }
 
   undo(currentValue) {
-    return currentValue - this.valueToAdd;
+    return subtract(currentValue);
   }
 }
 
@@ -51,11 +51,11 @@ export class SubtractCommand {
   }
 
   execute(currentValue) {
-    return currentValue - this.valueToSubtract;
+    return subtract(currentValue);
   }
 
   undo(currentValue) {
-    return currentValue + this.valueToSubtract;
+    return add(currentValue);
   }
 }
 
@@ -65,11 +65,11 @@ export class MultiplyCommand {
   }
 
   execute(currentValue) {
-    return currentValue * this.valueToMultiply;
+    return multiply(currentValue);
   }
 
   undo(currentValue) {
-    return currentValue / this.valueToMultiply;
+    return divide(currentValue);
   }
 }
 
@@ -79,11 +79,11 @@ export class DivideCommand {
   }
 
   execute(currentValue) {
-    return currentValue / this.valueToDivide;
+    return divide(currentValue);
   }
 
   undo(currentValue) {
-    return currentValue * this.valueToDivide;
+    return multiply(currentValue);
   }
 }
 

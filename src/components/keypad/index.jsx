@@ -10,7 +10,6 @@ class KeyPad extends Component {
     super(props);
   }
   render() {
-    console.log('from keypad', this.props);
     const buttons = [
       { id: 1, context: '9' },
       { id: 2, context: '8' },

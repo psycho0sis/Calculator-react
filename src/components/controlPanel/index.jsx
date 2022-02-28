@@ -12,7 +12,6 @@ class ControlPanel extends Component {
   }
 
   render() {
-    console.log('from controlPanel', this.props);
     const buttons = [
       [
         { id: 1, context: 'C', type: 'function' },
@@ -22,7 +21,7 @@ class ControlPanel extends Component {
       ],
       [
         { id: 1, context: '*', type: 'operation' },
-        { id: 2, context: '\\', type: 'operation' },
+        { id: 2, context: '/', type: 'operation' },
         { id: 3, context: '=', type: 'operation' },
         { id: 4, context: 'CE', type: 'function' }
       ]
