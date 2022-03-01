@@ -1,4 +1,5 @@
 const addSpaces = (value) => {
+  value = value.toString();
   if (value === '0') return value;
   let output = '';
   let decimal = '';

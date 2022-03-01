@@ -13,7 +13,7 @@ class Button extends Component {
     return (
       <MyButton
         className={`${type || ''}`}
-        onClick={handleClick(value)}
+        onClick={() => handleClick(value)}
         value={value}
         key={value}
         type={type}>

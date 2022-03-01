@@ -1,7 +1,9 @@
 import React from 'react';
 
-import { Container, Title, Button, CustomSelect, Label } from './style';
-import { ThemeToggler } from 'components/themeToggler/ThemeToggler';
+import { ThemeToggler } from 'components/ThemeToggler/ThemeToggler';
+import ClearButton from 'components/ClearButton/index';
+
+import { Container, Title, CustomSelect, Label } from './style';
 
 const Settings = () => {
   return (
@@ -12,7 +14,7 @@ const Settings = () => {
         <ThemeToggler />
       </CustomSelect>
 
-      <Button>Clear All History</Button>
+      <ClearButton />
     </Container>
   );
 };

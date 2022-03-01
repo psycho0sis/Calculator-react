@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import addSpaces from 'utils/addSpaces';
-
 import { DisplayText } from './style';
 
 class Display extends Component {
@@ -12,11 +10,11 @@ class Display extends Component {
 
   render() {
     const { firstValue } = this.props;
-    return <DisplayText>{addSpaces(firstValue)}</DisplayText>;
+    return <DisplayText>{firstValue}</DisplayText>;
   }
 }
 
 Display.propTypes = {
-  firstValue: PropTypes.string
+  firstValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 export default Display;

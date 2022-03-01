@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
-import Display from 'components/display/index';
-import ControlPanel from 'components/controlPanel/index';
+import Display from 'components/Display/index';
+import ControlPanel from 'components/ControlPanel/index';
 
 import Calculator, {
   AddCommand,
@@ -13,40 +14,22 @@ import Calculator, {
 import isEnd from 'utils/isEnd';
 
 import { Wrapper } from './style';
-import ErrorBoundary from 'errorBoundary/errorBoundary';
+import ErrorBoundary from 'components/ErrorBoundary/index';
 
-class Container extends Component {
+class Container extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      firstValue: this.calculator.value,
-      memory: null,
-      operator: null,
-      history: this.calculator.history
+      firstValue: '0',
+      result: null,
+      memory: '',
+      operator: null
     };
   }
 
   calculator = new Calculator();
 
-  setMemory = (memory, operator, firstValue) => {
-    try {
-      return operator !== null
-        ? operator === '+'
-          ? this.calculator.executeCommand(new AddCommand(memory))
-          : operator === '-'
-          ? this.calculator.executeCommand(new SubtractCommand(memory))
-          : operator === '*'
-          ? this.calculator.executeCommand(new MultiplyCommand(memory))
-          : operator === '/'
-          ? this.calculator.executeCommand(new DivideCommand(memory))
-          : null
-        : parseFloat(firstValue);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  handleClick = (content) => () => {
+  handleClick = (content) => {
     const { firstValue } = this.state;
 
     switch (content) {
@@ -57,85 +40,79 @@ class Container extends Component {
         break;
       }
       case 'CE': {
-        this.setState({ firstValue: '0', memory: null });
+        this.calculator.reset();
+        this.setState({ firstValue: this.calculator.getValue(), memory: null });
         break;
       }
       case '+': {
-        if (this.state.firstValue === '0') break;
-        this.setState(({ firstValue, memory, operator }) => ({
-          memory: this.setMemory(memory, operator, firstValue),
-          firstValue: '0',
-          operator: '+'
-        }));
+        this.setState({
+          operator: '+',
+          firstValue: '0'
+        });
         break;
       }
       case '-': {
-        if (this.state.firstValue === '0') break;
-        this.setState(({ firstValue, memory, operator }) => ({
-          memory: this.setMemory(memory, operator, firstValue),
-          firstValue: '0',
-          operator: '-'
-        }));
+        this.setState({
+          operator: '-',
+          firstValue: '0'
+        });
         break;
       }
       case '*': {
-        if (this.state.firstValue === '0') break;
-        this.setState(({ firstValue, memory, operator }) => ({
-          memory: this.setMemory(memory, operator, firstValue),
-          firstValue: '0',
-          operator: '*'
-        }));
+        this.setState({
+          operator: '*',
+          firstValue: '0'
+        });
         break;
       }
       case '/': {
-        if (this.state.firstValue === '0') break;
-        this.setState(({ firstValue, memory, operator }) => ({
-          memory: this.setMemory(memory, operator, firstValue),
-          firstValue: '0',
-          operator: '/'
-        }));
+        this.setState({
+          operator: '/',
+          firstValue: '0'
+        });
         break;
       }
       case '=': {
+        const { operator, firstValue } = this.state;
         if (!this.state.operator) break;
-        this.calculator.value = this.state.firstValue;
-        this.setState(({ memory, operator }) => ({
-          firstValue:
-            operator === '+'
-              ? (memory + parseFloat(this.calculator.value)).toString()
-              : operator === '-'
-              ? (memory - parseFloat(this.calculator.value)).toString()
-              : operator === '*'
-              ? (memory * parseFloat(this.calculator.value)).toString()
-              : operator === '/'
-              ? (memory / parseFloat(this.calculator.value)).toString()
-              : '0',
-          memory: null,
-          operator: null
-        }));
+
+        if (operator === '+') {
+          this.calculator.execute(new AddCommand(firstValue));
+        } else if (operator === '-') {
+          this.calculator.execute(new SubtractCommand(firstValue));
+        } else if (operator === '*') {
+          this.calculator.execute(new MultiplyCommand(firstValue));
+        } else if (operator === '/') {
+          this.calculator.execute(new DivideCommand(firstValue));
+        }
+
+        this.setState({ operator: null, firstValue: this.calculator.getValue() });
         break;
       }
+
       case '.': {
-        if (firstValue.includes('.')) return;
+        if (firstValue.toString().includes('.')) return;
         this.setState(({ firstValue }) => ({
           firstValue: firstValue + '.'
         }));
+
         break;
       }
       default: {
-        firstValue[firstValue.length - 1] === '.'
-          ? this.setState(({ firstValue }) => ({
-              firstValue: firstValue + content
-            }))
-          : this.setState(({ firstValue }) => ({
-              firstValue: parseFloat(parseFloat(firstValue) + content).toString()
-            }));
+        if (!this.state.operator) {
+          this.calculator.setCurrent(this.state.firstValue + content);
+        }
+
+        this.setState(({ firstValue }) => ({
+          firstValue: parseFloat(firstValue + content).toString()
+        }));
       }
     }
   };
 
   render() {
     const { firstValue } = this.state;
+
     return (
       <Wrapper>
         <ErrorBoundary>
@@ -146,5 +123,9 @@ class Container extends Component {
     );
   }
 }
+
+Container.propTypes = {
+  onChangeHistory: PropTypes.func
+};
 
 export default Container;

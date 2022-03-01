@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import Header from 'components/header/index';
+import Header from 'components/Header/index';
 import Home from 'screens/Home/index';
 import Settings from 'screens/Settings/index';
 
@@ -21,24 +21,27 @@ class App extends Component {
     this.selectTheme = (e) => {
       switch (e.target.value) {
         case 'lightTheme': {
-          this.setState({
-            theme: lightTheme,
-            val: 'lightTheme'
-          });
+          localStorage.setItem('theme', 'lightTheme'),
+            this.setState({
+              theme: lightTheme,
+              val: 'lightTheme'
+            });
           break;
         }
         case 'coloredTheme': {
-          this.setState({
-            theme: coloredTheme,
-            val: 'coloredTheme'
-          });
+          localStorage.setItem('theme', 'coloredTheme'),
+            this.setState({
+              theme: coloredTheme,
+              val: 'coloredTheme'
+            });
           break;
         }
         case 'darkTheme': {
-          this.setState({
-            theme: darkTheme,
-            val: 'darkTheme'
-          });
+          localStorage.setItem('theme', 'darkTheme'),
+            this.setState({
+              theme: darkTheme,
+              val: 'darkTheme'
+            });
           break;
         }
         default:
@@ -51,7 +54,7 @@ class App extends Component {
 
     this.state = {
       theme: lightTheme,
-      val: 'lightTheme',
+      val: localStorage.getItem('theme'),
       selectTheme: this.selectTheme
     };
   }
@@ -75,8 +78,8 @@ class App extends Component {
             <Header />
             <main>
               <Switch>
-                <Route exact path={HOME_PAGE_ROUTE} component={Home} />
-                <Route exact path={SETTINGS_PAGE_ROUTE} component={Settings} />
+                <Route exact path={HOME_PAGE_ROUTE} component={() => <Home />} />
+                <Route exact path={SETTINGS_PAGE_ROUTE} component={() => <Settings />} />
                 <Redirect
                   to={{
                     pathname: '/home'

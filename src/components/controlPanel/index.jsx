@@ -1,20 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import KeyPad from 'components/keypad/index';
-import Button from 'containers/button/index';
+import KeyPad from 'components/Keypad/index';
+import Button from 'containers/Button/index';
 
 import { operationButtons } from 'constants/buttons';
 
 import { Container } from './style';
 
 class ControlPanel extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    console.log('render controlPanel');
     return (
       <Container>
         {operationButtons.map((button) => {

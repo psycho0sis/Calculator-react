@@ -1,89 +1,84 @@
-const add = (valueToAdd) => {
-  return parseFloat(value) + parseFloat(valueToAdd);
-};
+export let storage = JSON.parse(localStorage.getItem('state')) || [];
 
-const subtract = (valueToSubtract) => {
-  return (parseFloat(value) - parseFloat(valueToSubtract)).toString();
-};
+function add(x, y) {
+  storage.push({ firstValue: x, memory: y, operator: '+' });
+  return x + y;
+}
+function sub(x, y) {
+  storage.push({ firstValue: x, memory: y, operator: '-' });
+  return x - y;
+}
+function mul(x, y) {
+  storage.push({ firstValue: x, memory: y, operator: '*' });
+  return x * y;
+}
+function div(x, y) {
+  storage.push({ firstValue: x, memory: y, operator: '/' });
+  return x / y;
+}
 
-const multiply = (valueToMultiply) => {
-  return (parseFloat(value) * parseFloat(valueToMultiply)).toString();
-};
+class Command {
+  constructor(execute, undo, value) {
+    this.execute = execute;
+    this.undo = undo;
+    this.value = value;
+  }
+}
 
-const divide = (valueToDivide) => {
-  return (parseFloat(value) / parseFloat(valueToDivide)).toString();
-};
+export class AddCommand extends Command {
+  constructor(value) {
+    super(add, sub, Number(value));
+  }
+}
+export class SubtractCommand extends Command {
+  constructor(value) {
+    super(sub, add, Number(value));
+  }
+}
+export class MultiplyCommand extends Command {
+  constructor(value) {
+    super(mul, div, Number(value));
+  }
+}
 
-class Calculator {
+export class DivideCommand extends Command {
+  constructor(value) {
+    super(div, mul, Number(value));
+  }
+}
+
+export class Calculator {
   constructor() {
-    this.value = '0';
+    this.current = 0;
     this.history = [];
   }
-
-  executeCommand(command) {
-    this.value = command.execute(this.value);
+  execute(command) {
+    this.current = command.execute(this.current, command.value);
     this.history.push(command);
+    localStorage.setItem('state', JSON.stringify(storage));
   }
-
   undo() {
-    const command = this.history.pop();
-    this.value = command.undo(this.value);
+    var command = this.history.pop();
+    this.current = command.undo(this.current, command.value);
   }
-}
-
-export class AddCommand {
-  constructor(valueToAdd) {
-    this.valueToAdd = valueToAdd;
+  setCurrent(val) {
+    this.current = Number(val);
   }
+  getValue() {
+    if (this.current.toString().includes('.')) {
+      const integer = this.current.toString().split('.')[0];
+      const decimal = this.current.toString().split('.')[1];
+      if (decimal.length > 3) {
+        return `${integer}.${decimal.substring(0, 3)}`;
+      }
+      return `${integer}.${decimal}`;
+    }
 
-  execute(currentValue) {
-    return add(currentValue);
+    return this.current;
   }
-
-  undo(currentValue) {
-    return subtract(currentValue);
-  }
-}
-
-export class SubtractCommand {
-  constructor(valueToSubtract) {
-    this.valueToSubtract = valueToSubtract;
-  }
-
-  execute(currentValue) {
-    return subtract(currentValue);
-  }
-
-  undo(currentValue) {
-    return add(currentValue);
-  }
-}
-
-export class MultiplyCommand {
-  constructor(valueToMultiply) {
-    this.valueToMultiply = valueToMultiply;
-  }
-
-  execute(currentValue) {
-    return multiply(currentValue);
-  }
-
-  undo(currentValue) {
-    return divide(currentValue);
-  }
-}
-
-export class DivideCommand {
-  constructor(valueToDivide) {
-    this.valueToDivide = valueToDivide;
-  }
-
-  execute(currentValue) {
-    return divide(currentValue);
-  }
-
-  undo(currentValue) {
-    return multiply(currentValue);
+  reset() {
+    this.current = 0;
+    this.history = [];
   }
 }
 
