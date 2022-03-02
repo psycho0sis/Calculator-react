@@ -3,6 +3,7 @@ import { sliceResult } from './sliceResult';
 export let storage = JSON.parse(localStorage.getItem('state')) || [];
 
 function add(x, y) {
+  console.log(x, y);
   storage.push({ firstValue: x, memory: y, operator: '+' });
   return x + y;
 }
@@ -17,6 +18,11 @@ function mul(x, y) {
 function div(x, y) {
   storage.push({ firstValue: x, memory: y, operator: '/' });
   return x / y;
+}
+
+function rem(x, y) {
+  storage.push({ firstValue: x, memory: y, operator: '%' });
+  return x % y;
 }
 
 class Command {
@@ -46,6 +52,12 @@ export class MultiplyCommand extends Command {
 export class DivideCommand extends Command {
   constructor(value) {
     super(div, mul, Number(value));
+  }
+}
+
+export class RemainderCommand extends Command {
+  constructor(value) {
+    super(rem, mul, Number(value));
   }
 }
 

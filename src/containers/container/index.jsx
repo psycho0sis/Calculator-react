@@ -8,7 +8,8 @@ import Calculator, {
   AddCommand,
   SubtractCommand,
   MultiplyCommand,
-  DivideCommand
+  DivideCommand,
+  RemainderCommand
 } from 'utils/calculator';
 
 import isEnd from 'utils/isEnd';
@@ -30,7 +31,7 @@ class Container extends PureComponent {
   calculator = new Calculator();
 
   handleClick = (content) => {
-    const { firstValue } = this.state;
+    const { firstValue, memory } = this.state;
 
     switch (content) {
       case 'C': {
@@ -41,7 +42,7 @@ class Container extends PureComponent {
       }
       case 'CE': {
         this.calculator.reset();
-        this.setState({ firstValue: this.calculator.getValue(), memory: null });
+        this.setState({ firstValue: '0', memory: null });
         break;
       }
       case '+': {
@@ -72,11 +73,26 @@ class Container extends PureComponent {
         });
         break;
       }
+      case '%': {
+        this.setState({
+          operator: '%',
+          firstValue: '0'
+        });
+        break;
+      }
+      case '+/-': {
+        this.calculator.setCurrent(parseFloat(firstValue) * -1);
+        this.setState({
+          firstValue: (parseFloat(firstValue) * -1).toString()
+        });
+        break;
+      }
       case '=': {
         const { operator, firstValue } = this.state;
         if (!this.state.operator) break;
 
         if (operator === '+') {
+          console.log(firstValue, 'from =');
           this.calculator.execute(new AddCommand(firstValue));
         } else if (operator === '-') {
           this.calculator.execute(new SubtractCommand(firstValue));
@@ -84,6 +100,8 @@ class Container extends PureComponent {
           this.calculator.execute(new MultiplyCommand(firstValue));
         } else if (operator === '/') {
           this.calculator.execute(new DivideCommand(firstValue));
+        } else if (operator === '%') {
+          this.calculator.execute(new RemainderCommand(firstValue));
         }
 
         this.setState({ operator: null, firstValue: this.calculator.getValue() });

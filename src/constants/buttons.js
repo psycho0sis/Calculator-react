@@ -19,7 +19,7 @@ export const numberButtons = [
   { id: 7, context: '3' },
   { id: 8, context: '2' },
   { id: 9, context: '1' },
-  { id: 10, context: '(' },
+  { id: 10, context: '%', type: 'operation' },
   { id: 11, context: '0' },
-  { id: 12, context: ')' }
+  { id: 12, context: '+/-', type: 'operation' }
 ];

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import Button from 'containers/Button/index';
+import Button from 'components/Button/index';
 
 import { numberButtons } from 'constants/buttons';
 
@@ -16,7 +16,14 @@ class KeyPad extends PureComponent {
     return (
       <Grid>
         {numberButtons.map((button) => {
-          return <Button key={button.id} value={button.context} handleClick={handleClick} />;
+          return (
+            <Button
+              key={button.id}
+              value={button.context}
+              handleClick={handleClick}
+              type={button.type}
+            />
+          );
         })}
       </Grid>
     );

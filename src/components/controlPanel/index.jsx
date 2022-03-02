@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import KeyPad from 'components/Keypad/index';
-import Button from 'containers/Button/index';
+import Button from 'components/Button/index';
 
 import { operationButtons } from 'constants/buttons';
 
