@@ -92,7 +92,6 @@ class Container extends PureComponent {
         if (!this.state.operator) break;
 
         if (operator === '+') {
-          console.log(firstValue, 'from =');
           this.calculator.execute(new AddCommand(firstValue));
         } else if (operator === '-') {
           this.calculator.execute(new SubtractCommand(firstValue));

@@ -3,7 +3,6 @@ import { sliceResult } from './sliceResult';
 export let storage = JSON.parse(localStorage.getItem('state')) || [];
 
 function add(x, y) {
-  console.log(x, y);
   storage.push({ firstValue: x, memory: y, operator: '+' });
   return x + y;
 }

@@ -8,9 +8,9 @@ import Settings from 'screens/Settings/index';
 import { HOME_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from 'constants/router';
 
 import { Container } from './style';
-import { Global } from 'globalStyle';
+import { Global } from 'styles/globalStyle';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme, coloredTheme } from 'theme';
+import { lightTheme, darkTheme, coloredTheme } from 'styles/theme';
 
 import { ThemeContext } from 'context/themeContext';
 
