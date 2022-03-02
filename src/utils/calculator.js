@@ -1,3 +1,5 @@
+import { sliceResult } from './sliceResult';
+
 export let storage = JSON.parse(localStorage.getItem('state')) || [];
 
 function add(x, y) {
@@ -65,16 +67,7 @@ export class Calculator {
     this.current = Number(val);
   }
   getValue() {
-    if (this.current.toString().includes('.')) {
-      const integer = this.current.toString().split('.')[0];
-      const decimal = this.current.toString().split('.')[1];
-      if (decimal.length > 3) {
-        return `${integer}.${decimal.substring(0, 3)}`;
-      }
-      return `${integer}.${decimal}`;
-    }
-
-    return this.current;
+    return sliceResult(this.current);
   }
   reset() {
     this.current = 0;

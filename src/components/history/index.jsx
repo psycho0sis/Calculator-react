@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { sliceResult } from 'utils/sliceResult';
+
 import { Container, Title, Item, FlexEnd } from './style';
 
 const getHistory = () => {
@@ -41,7 +43,11 @@ class History extends Component {
         <FlexEnd>
           {history &&
             history.map((item, i) => {
-              return <Item key={i}>{`${item.firstValue} ${item.operator} ${item.memory}`}</Item>;
+              return (
+                <Item key={i}>{`${sliceResult(item.firstValue)} ${item.operator} ${sliceResult(
+                  item.memory
+                )}`}</Item>
+              );
             })}
         </FlexEnd>
       </Container>
