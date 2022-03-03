@@ -4,9 +4,10 @@ import { Button } from './style';
 
 const ClearButton = () => {
   const clearHistory = () => {
-    localStorage.removeItem('state');
+    localStorage.removeItem('history');
     window.location.reload();
   };
+
   return <Button onClick={clearHistory}>Clear All History</Button>;
 };
 

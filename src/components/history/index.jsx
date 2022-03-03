@@ -6,23 +6,20 @@ import { sliceResult } from 'utils/sliceResult';
 import { Container, Title, Item, FlexEnd } from './style';
 
 const getHistory = () => {
-  const saved = JSON.parse(localStorage.getItem('state'));
-  let initialState = saved;
+  const saved = JSON.parse(localStorage.getItem('history'));
+  const initialState = saved;
   return initialState || [];
 };
 
 class History extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      history: getHistory(),
-      interval: null
-    };
-  }
+  state = {
+    history: getHistory(),
+    interval: null
+  };
 
   changeState = () => {
     this.setState({
-      history: JSON.parse(localStorage.getItem('state'))
+      history: JSON.parse(localStorage.getItem('history'))
     });
   };
 
@@ -52,6 +49,7 @@ class History extends Component {
   render() {
     const { history } = this.state;
     const items = this.showHistory(history);
+
     return (
       <Container id="history">
         <Title>History</Title>

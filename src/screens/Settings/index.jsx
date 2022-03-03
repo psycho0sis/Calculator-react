@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ThemeToggler } from 'components/ThemeToggler/ThemeToggler';
+import ThemeToggler from 'components/ThemeToggler/ThemeToggler';
 import ClearButton from 'components/ClearButton/index';
 
 import { Container, Title, CustomSelect, Label } from './style';

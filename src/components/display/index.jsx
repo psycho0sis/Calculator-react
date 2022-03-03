@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { DisplayText } from './style';
 
-class Display extends Component {
-  constructor(props) {
-    super(props);
-  }
+const Display = (props) => {
+  const { firstValue, memory } = props;
 
-  render() {
-    const { firstValue, memory } = this.props;
-    return <DisplayText id="display">{firstValue ? firstValue : memory}</DisplayText>;
-  }
-}
+  return <DisplayText id="display">{firstValue ? firstValue : memory}</DisplayText>;
+};
 
 Display.propTypes = {
   firstValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

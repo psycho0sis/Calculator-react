@@ -9,7 +9,7 @@ class ErrorBoundary extends Component {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
@@ -18,15 +18,14 @@ class ErrorBoundary extends Component {
   }
 
   render() {
-    if (this.state.hasError) {
-      return (
-        <>
-          <MyError>Opps...we got a mistake</MyError>
-        </>
-      );
+    const { children } = this.props;
+    const { hasError } = this.state;
+
+    if (hasError) {
+      return <MyError>Opps...we got a mistake</MyError>;
     }
 
-    return this.props.children;
+    return children;
   }
 }
 

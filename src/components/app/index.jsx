@@ -15,52 +15,49 @@ import { lightTheme, darkTheme, coloredTheme } from 'styles/theme';
 import { ThemeContext } from 'context/themeContext';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.selectTheme = (e) => {
-      switch (e.target.value) {
-        case 'lightTheme': {
-          localStorage.setItem('theme', 'lightTheme'),
-            this.setState({
-              theme: lightTheme,
-              val: 'lightTheme'
-            });
-          break;
-        }
-        case 'coloredTheme': {
-          localStorage.setItem('theme', 'coloredTheme'),
-            this.setState({
-              theme: coloredTheme,
-              val: 'coloredTheme'
-            });
-          break;
-        }
-        case 'darkTheme': {
-          localStorage.setItem('theme', 'darkTheme'),
-            this.setState({
-              theme: darkTheme,
-              val: 'darkTheme'
-            });
-          break;
-        }
-        default:
+  selectTheme = (e) => {
+    switch (e.target.value) {
+      case 'lightTheme': {
+        localStorage.setItem('theme', 'lightTheme'),
           this.setState({
             theme: lightTheme,
             val: 'lightTheme'
           });
+        break;
       }
-    };
+      case 'coloredTheme': {
+        localStorage.setItem('theme', 'coloredTheme'),
+          this.setState({
+            theme: coloredTheme,
+            val: 'coloredTheme'
+          });
+        break;
+      }
+      case 'darkTheme': {
+        localStorage.setItem('theme', 'darkTheme'),
+          this.setState({
+            theme: darkTheme,
+            val: 'darkTheme'
+          });
+        break;
+      }
+      default:
+        this.setState({
+          theme: lightTheme,
+          val: 'lightTheme'
+        });
+    }
+  };
 
-    this.state = {
-      theme: lightTheme,
-      val: localStorage.getItem('theme'),
-      selectTheme: this.selectTheme
-    };
-  }
+  state = {
+    theme: lightTheme,
+    val: localStorage.getItem('theme'),
+    selectTheme: this.selectTheme
+  };
 
   render() {
     const { val } = this.state;
+
     return (
       <ThemeContext.Provider value={this.state}>
         <ThemeProvider
@@ -78,8 +75,8 @@ class App extends Component {
             <Header />
             <main>
               <Switch>
-                <Route exact path={HOME_PAGE_ROUTE} component={() => <Home />} />
-                <Route exact path={SETTINGS_PAGE_ROUTE} component={() => <Settings />} />
+                <Route exact path={HOME_PAGE_ROUTE} component={Home} />
+                <Route exact path={SETTINGS_PAGE_ROUTE} component={Settings} />
                 <Redirect
                   to={{
                     pathname: '/home'

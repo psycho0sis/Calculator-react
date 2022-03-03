@@ -22,11 +22,11 @@ describe('Calculator app', () => {
     cy.get('button')
       .click()
       .should(() => {
-        expect(localStorage.getItem('state'));
+        expect(localStorage.getItem('history'));
       });
 
-    cy.clearLocalStorage(/state/).should((ls) => {
-      expect(ls.getItem('state')).to.be.null;
+    cy.clearLocalStorage(/history/).should((ls) => {
+      expect(ls.getItem('history')).to.be.null;
     });
   });
 });
@@ -241,11 +241,11 @@ describe('Calculator app', () => {
     cy.get('button')
       .click()
       .should(() => {
-        expect(localStorage.getItem('state'));
+        expect(localStorage.getItem('history'));
       });
 
-    cy.clearLocalStorage(/state/).should((ls) => {
-      expect(ls.getItem('state')).to.be.null;
+    cy.clearLocalStorage(/history/).should((ls) => {
+      expect(ls.getItem('history')).to.be.null;
     });
 
     cy.visit('/home');

@@ -1,6 +1,6 @@
 import { sliceResult } from './sliceResult';
 
-export let storage = JSON.parse(localStorage.getItem('state')) || [];
+export let storage = JSON.parse(localStorage.getItem('history')) || [];
 
 function add(x, y) {
   storage.push({ firstValue: x, memory: y, operator: '+' });
@@ -68,7 +68,7 @@ export class Calculator {
   execute(command) {
     this.current = command.execute(this.current, command.value);
     this.history.push(command);
-    localStorage.setItem('state', JSON.stringify(storage));
+    localStorage.setItem('history', JSON.stringify(storage));
   }
   undo() {
     var command = this.history.pop();

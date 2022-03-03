@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Display from 'components/Display/index';
@@ -17,15 +17,11 @@ import isEnd from 'utils/isEnd';
 import { Wrapper } from './style';
 import ErrorBoundary from 'components/ErrorBoundary/index';
 
-class Container extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstValue: '0',
-      result: null,
-      operator: null
-    };
-  }
+class Container extends Component {
+  state = {
+    firstValue: '0',
+    operator: null
+  };
 
   calculator = new Calculator();
 
@@ -127,12 +123,13 @@ class Container extends PureComponent {
   };
 
   render() {
-    const { firstValue, memory } = this.state;
+    const { firstValue } = this.state;
+    const memory = this.calculator.getValue();
 
     return (
       <Wrapper>
         <ErrorBoundary>
-          <Display firstValue={firstValue} memory={this.calculator.getValue()} />
+          <Display firstValue={firstValue} memory={memory} />
         </ErrorBoundary>
         <ControlPanel handleClick={this.handleClick} />
       </Wrapper>
