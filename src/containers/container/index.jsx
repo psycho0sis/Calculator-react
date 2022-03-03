@@ -23,7 +23,6 @@ class Container extends PureComponent {
     this.state = {
       firstValue: '0',
       result: null,
-      memory: '',
       operator: null
     };
   }
@@ -31,7 +30,7 @@ class Container extends PureComponent {
   calculator = new Calculator();
 
   handleClick = (content) => {
-    const { firstValue, memory } = this.state;
+    const { firstValue } = this.state;
 
     switch (content) {
       case 'C': {
@@ -42,41 +41,41 @@ class Container extends PureComponent {
       }
       case 'CE': {
         this.calculator.reset();
-        this.setState({ firstValue: '0', memory: null });
+        this.setState({ firstValue: '0' });
         break;
       }
       case '+': {
         this.setState({
           operator: '+',
-          firstValue: '0'
+          firstValue: ''
         });
         break;
       }
       case '-': {
         this.setState({
           operator: '-',
-          firstValue: '0'
+          firstValue: ''
         });
         break;
       }
       case '*': {
         this.setState({
           operator: '*',
-          firstValue: '0'
+          firstValue: ''
         });
         break;
       }
       case '/': {
         this.setState({
           operator: '/',
-          firstValue: '0'
+          firstValue: ''
         });
         break;
       }
       case '%': {
         this.setState({
           operator: '%',
-          firstValue: '0'
+          firstValue: ''
         });
         break;
       }
@@ -128,12 +127,12 @@ class Container extends PureComponent {
   };
 
   render() {
-    const { firstValue } = this.state;
+    const { firstValue, memory } = this.state;
 
     return (
       <Wrapper>
         <ErrorBoundary>
-          <Display firstValue={firstValue} />
+          <Display firstValue={firstValue} memory={this.calculator.getValue()} />
         </ErrorBoundary>
         <ControlPanel handleClick={this.handleClick} />
       </Wrapper>

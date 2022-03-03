@@ -16,7 +16,8 @@ class Button extends Component {
         onClick={() => handleClick(value)}
         value={value}
         key={value}
-        type={type}>
+        type={type}
+        data-name={value === '.' ? 'coma' : null}>
         {value}
       </MyButton>
     );

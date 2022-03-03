@@ -35,21 +35,27 @@ class History extends Component {
     clearInterval(this.state.interval);
   }
 
+  showHistory = (history) => {
+    let result = [];
+    if (history) {
+      result = history.map((item, i) => {
+        return (
+          <Item key={i}>{`${sliceResult(item.firstValue)} ${item.operator} ${sliceResult(
+            item.memory
+          )}`}</Item>
+        );
+      });
+    }
+    return result;
+  };
+
   render() {
     const { history } = this.state;
+    const items = this.showHistory(history);
     return (
-      <Container>
+      <Container id="history">
         <Title>History</Title>
-        <FlexEnd>
-          {history &&
-            history.map((item, i) => {
-              return (
-                <Item key={i}>{`${sliceResult(item.firstValue)} ${item.operator} ${sliceResult(
-                  item.memory
-                )}`}</Item>
-              );
-            })}
-        </FlexEnd>
+        <FlexEnd>{items}</FlexEnd>
       </Container>
     );
   }
