@@ -29,3 +29,7 @@
 - Запуск тестов в графическом интерфейсе
 
   `npm run cypress`
+
+#### Deploy
+
+https://psycho0sis.github.io/Calculator-react/#/home
