@@ -4,24 +4,24 @@ export let storage = JSON.parse(localStorage.getItem('history')) || [];
 
 function add(x, y) {
   storage.push({ firstValue: x, memory: y, operator: '+' });
-  return x + y;
+  return isNaN(x + y) ? 0 : x + y;
 }
 function sub(x, y) {
   storage.push({ firstValue: x, memory: y, operator: '-' });
-  return x - y;
+  return isNaN(x - y) ? 0 : x - y;
 }
 function mul(x, y) {
   storage.push({ firstValue: x, memory: y, operator: '*' });
-  return x * y;
+  return isNaN(x * y) ? 0 : x * y;
 }
 function div(x, y) {
   storage.push({ firstValue: x, memory: y, operator: '/' });
-  return x / y;
+  return isNaN(x / y) ? 0 : x / y;
 }
 
 function rem(x, y) {
   storage.push({ firstValue: x, memory: y, operator: '%' });
-  return x % y;
+  return isNaN(x % y) ? 0 : x % y;
 }
 
 class Command {
