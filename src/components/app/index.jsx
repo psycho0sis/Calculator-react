@@ -1,94 +1,51 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-
-import Header from 'components/Header/index';
-import Home from 'screens/Home/index';
-import Settings from 'screens/Settings/index';
-
-import { HOME_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from 'constants/router';
-
-import { Container } from './style';
-import { Global } from 'styles/globalStyle';
+import { Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme, coloredTheme } from 'styles/theme';
 
+import { Header } from 'components/Header/';
+import { Home } from 'screens/Home/';
+import { Settings } from 'screens/Settings/';
+
+import { HOME_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from 'constants/routes';
 import { ThemeContext } from 'context/themeContext';
+import { pickTheme, selectThemeForProvider } from 'utils/selectTheme';
 
-class App extends Component {
+import { Global } from 'styles/globalStyle';
+import { lightTheme } from 'styles/theme';
+import { Container } from './style';
+
+export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      theme: lightTheme,
+      val: localStorage.getItem('theme'),
+      selectTheme: this.selectTheme
+    };
+  }
+
   selectTheme = (e) => {
-    switch (e.target.value) {
-      case 'lightTheme': {
-        localStorage.setItem('theme', 'lightTheme'),
-          this.setState({
-            theme: lightTheme,
-            val: 'lightTheme'
-          });
-        break;
-      }
-      case 'coloredTheme': {
-        localStorage.setItem('theme', 'coloredTheme'),
-          this.setState({
-            theme: coloredTheme,
-            val: 'coloredTheme'
-          });
-        break;
-      }
-      case 'darkTheme': {
-        localStorage.setItem('theme', 'darkTheme'),
-          this.setState({
-            theme: darkTheme,
-            val: 'darkTheme'
-          });
-        break;
-      }
-      default:
-        this.setState({
-          theme: lightTheme,
-          val: 'lightTheme'
-        });
-    }
-  };
-
-  state = {
-    theme: lightTheme,
-    val: localStorage.getItem('theme'),
-    selectTheme: this.selectTheme
+    const obj = pickTheme(e);
+    this.setState(obj);
   };
 
   render() {
     const { val } = this.state;
+    const theme = selectThemeForProvider(val);
 
     return (
       <ThemeContext.Provider value={this.state}>
-        <ThemeProvider
-          theme={
-            val === 'lightTheme'
-              ? lightTheme
-              : val === 'darkTheme'
-              ? darkTheme
-              : val === 'coloredTheme'
-              ? coloredTheme
-              : lightTheme
-          }>
-          <Global />
+        <ThemeProvider theme={theme}>
           <Container>
+            <Global />
             <Header />
-            <main>
-              <Switch>
-                <Route exact path={HOME_PAGE_ROUTE} component={Home} />
-                <Route exact path={SETTINGS_PAGE_ROUTE} component={Settings} />
-                <Redirect
-                  to={{
-                    pathname: '/home'
-                  }}
-                />
-              </Switch>
-            </main>
+            <Switch>
+              <Route exact path={HOME_PAGE_ROUTE} component={Home} />
+              <Route exact path={SETTINGS_PAGE_ROUTE} component={Settings} />
+            </Switch>
           </Container>
         </ThemeProvider>
       </ThemeContext.Provider>
     );
   }
 }
-
-export default App;

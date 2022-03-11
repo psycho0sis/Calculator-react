@@ -1,14 +1,9 @@
 import React from 'react';
 
+import { selectThemeForContext } from 'utils/selectTheme';
+
 export const ThemeContext = React.createContext({
   theme: '',
-  val:
-    localStorage.getItem('theme') === 'lightTheme'
-      ? 'lightTheme'
-      : localStorage.getItem('theme') === 'coloredTheme'
-      ? 'coloredTheme'
-      : localStorage.getItem('theme') === 'darkTheme'
-      ? 'darkTheme'
-      : 'lightTheme',
+  val: selectThemeForContext(),
   selectTheme: () => {}
 });

@@ -85,5 +85,3 @@ export class Calculator {
     this.history = [];
   }
 }
-
-export default Calculator;

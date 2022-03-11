@@ -4,7 +4,7 @@ import { storage } from 'utils/calculator';
 
 import { Button } from './style';
 
-const ClearButton = () => {
+export const ClearButton = () => {
   const clearHistory = () => {
     localStorage.removeItem('history');
     storage.length = 0;
@@ -12,5 +12,3 @@ const ClearButton = () => {
 
   return <Button onClick={clearHistory}>Clear All History</Button>;
 };
-
-export default ClearButton;

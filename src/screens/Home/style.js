@@ -1,3 +1,5 @@
+import * as variables from 'styles/variables';
+
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -6,10 +8,10 @@ export const Container = styled.div`
 
 export const FlexContainer = styled.div`
   display: flex;
-  padding: 0px 10px;
+  padding: ${variables.SPACES[0]}px ${variables.SPACES[1]}px;
 `;
 
 export const Grid = styled.div`
   display: grid;
-  padding: 20px 40px;
+  padding: ${variables.SPACES[3]}px ${variables.SPACES[5]}px;
 `;

@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Display from 'components/Display/index';
-import ControlPanel from 'components/ControlPanel/index';
+import { Display } from 'components/Display/index';
+import { ControlPanel } from 'components/ControlPanel/index';
+import { ErrorBoundary } from 'components/ErrorBoundary';
 
-import Calculator, {
+import {
+  Calculator,
   AddCommand,
   SubtractCommand,
   MultiplyCommand,
   DivideCommand,
   RemainderCommand
 } from 'utils/calculator';
-
-import isEnd from 'utils/isEnd';
+import { roundUpNumber } from 'utils/roundUpNumber';
 
 import { Wrapper } from './style';
-import ErrorBoundary from 'components/ErrorBoundary/index';
 
-class Container extends Component {
-  state = {
-    firstValue: '0',
-    operator: null
-  };
+export class Container extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstValue: '0',
+      operator: null
+    };
+  }
 
   calculator = new Calculator();
 
@@ -31,7 +34,7 @@ class Container extends Component {
     switch (content) {
       case 'C': {
         this.setState(({ firstValue }) => ({
-          firstValue: isEnd(firstValue)
+          firstValue: roundUpNumber(firstValue)
         }));
         break;
       }
@@ -140,5 +143,3 @@ class Container extends Component {
 Container.propTypes = {
   onChangeHistory: PropTypes.func
 };
-
-export default Container;

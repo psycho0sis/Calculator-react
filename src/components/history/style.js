@@ -1,38 +1,45 @@
-import styled from 'styled-components';
 import * as variables from 'styles/variables';
 
+import styled from 'styled-components';
+
+const WIDTH = 1;
+const HEIGHT = 590;
+const LEFT = 4;
+const TOP = 2;
+
 export const Container = styled.div`
-  flex: 0 1 20%;
   display: flex;
+  flex: 0 1 20%;
   flex-direction: column;
   position: relative;
-  padding: 0px 40px;
+  padding: ${variables.SPACES[0]}px ${variables.SPACES[5]}px;
+
   &::before {
-    position: absolute;
+    background: ${variables.COLORS.buttonsBorder};
     content: '';
-    top: 2%;
-    left: 4%;
-    width: 1px;
-    height: 590px;
-    background: #929292;
+    height: ${HEIGHT}px;
+    left: ${LEFT}%;
+    position: absolute;
+    top: ${TOP}%;
+    width: ${WIDTH}px;
   }
 `;
 
 export const Title = styled.h2`
-  text-align: center;
-  font-size: ${variables.FS_MEDIUM};
   color: ${({ theme }) => theme.text};
-  margin: 20px 0 20px;
+  font-size: ${variables.FS_MEDIUM}px;
+  margin: ${variables.SPACES[2]}px ${variables.SPACES[0]}px;
+  text-align: center;
 `;
 
 export const Item = styled.p`
-  text-align: left;
-  font-size: ${variables.FS_REGULAR};
   color: ${({ theme }) => theme.text};
-  margin: 25px 0px;
+  font-size: ${variables.FS_REGULAR}px;
+  margin: ${variables.SPACES[3]}px ${variables.SPACES[0]}px;
+  text-align: left;
 `;
 
 export const FlexEnd = styled.div`
+  height: ${HEIGHT}px;
   overflow: auto;
-  height: 530px;
 `;

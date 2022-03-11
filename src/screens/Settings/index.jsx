@@ -1,22 +1,19 @@
 import React from 'react';
 
-import ThemeToggler from 'components/ThemeToggler/ThemeToggler';
-import ClearButton from 'components/ClearButton/index';
+import { ThemeToggler } from 'components/ThemeToggler/';
+import { ClearButton } from 'components/ClearButton/';
 
 import { Container, Title, CustomSelect, Label } from './style';
 
-const Settings = () => {
+export const Settings = () => {
   return (
     <Container>
       <Title>Settings</Title>
-      <Label htmlFor="standard-select">Swith theme</Label>
-      <CustomSelect id="standard-select" className="select-dropdown">
+      <Label>Swith theme</Label>
+      <CustomSelect id="standard-select">
         <ThemeToggler />
       </CustomSelect>
-
       <ClearButton />
     </Container>
   );
 };
-
-export default Settings;

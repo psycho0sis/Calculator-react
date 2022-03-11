@@ -1,5 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
 import * as variables from './variables.js';
+
+import { createGlobalStyle } from 'styled-components';
 
 export const Global = createGlobalStyle`
   * {
@@ -20,6 +21,7 @@ export const Global = createGlobalStyle`
   :active {
     outline: none;
   }
+
   a:focus,
   a:active {
     outline: none;
@@ -44,7 +46,7 @@ export const Global = createGlobalStyle`
     width: 100%;
     font-size: 100%;
     line-height: 1;
-    font-size: ${variables.FS_SMALL};
+    font-size: ${variables.FS_SMALL}px;
     transition: all 0.50s linear;
   }
 
@@ -58,24 +60,30 @@ export const Global = createGlobalStyle`
   input::-ms-clear {
     display: none;
   }
+
   button,
   select {
     cursor: pointer;
   }
+
   button::-moz-focus-inner {
     padding: 0;
     border: 0;
   }
+
   a,
   a:visited {
     text-decoration: none;
   }
+
   a:hover {
     text-decoration: none;
   }
+
   ul li {
     list-style: none;
   }
+
   img {
     vertical-align: top;
   }
@@ -95,39 +103,14 @@ export const Global = createGlobalStyle`
   }
 
   .linkDiactive {
-    font-size: ${variables.FS_REGULAR};
+    font-size: ${variables.FS_REGULAR}px;
     color: ${({ theme }) => theme.text};
     letter-spacing: 1.4px;
   }
 
   .linkDiactive.linkActive {
-    font-size: ${variables.FS_REGULAR};
+    font-size: ${variables.FS_REGULAR}px;
     color: ${({ theme }) => theme.text};
     text-decoration: underline;
   }
-  .button_1 {
-    grid-area: button_1;
-  }
-   .button_2 {
-    grid-area: button_2;
-  }
-   .button_3 {
-    grid-area: button_3;
-  }
-   .button_4 {
-    grid-area: button_4;
-  }
-   .button_5 {
-    grid-area: button_5;
-  }
-   .button_6 {
-    grid-area: button_6;
-  }
-   .button_7 {
-    grid-area: button_7;
-  }
-   .button_8 {
-    grid-area: button_8;
-  }
-
 `;

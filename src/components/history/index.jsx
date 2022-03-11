@@ -5,17 +5,14 @@ import { sliceResult } from 'utils/sliceResult';
 
 import { Container, Title, Item, FlexEnd } from './style';
 
-const getHistory = () => {
-  const saved = JSON.parse(localStorage.getItem('history'));
-  const initialState = saved;
-  return initialState || [];
-};
-
-class History extends Component {
-  state = {
-    history: getHistory(),
-    interval: null
-  };
+export class History extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      history: JSON.parse(localStorage.getItem('history')) || [],
+      interval: null
+    };
+  }
 
   changeState = () => {
     this.setState({
@@ -35,11 +32,13 @@ class History extends Component {
   showHistory = (history) => {
     let result = [];
     if (history) {
-      result = history.map((item, i) => {
+      result = history.map(({ firstValue, operator, memory }, i) => {
         return (
-          <Item key={i}>{`${sliceResult(item.firstValue)} ${item.operator} ${sliceResult(
-            item.memory
-          )}`}</Item>
+          <Item key={i}>
+            {`${sliceResult(firstValue)} 
+            ${operator}
+            ${sliceResult(memory)}`}
+          </Item>
         );
       });
     }
@@ -62,5 +61,3 @@ class History extends Component {
 History.propTypes = {
   history: PropTypes.array
 };
-
-export default History;

@@ -1,26 +1,33 @@
-import styled from 'styled-components';
 import * as variables from 'styles/variables';
 
+import styled from 'styled-components';
+
+const MAX_WIDTH = 1100;
+const WIDTH = 180;
+
 export const Container = styled.div`
-  width: 1100px;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   background: ${({ theme }) => theme.bgHeader};
-  padding: 20px;
+  border-top-right-radius: ${variables.SPACES[3]}px;
+  border-top-left-radius: ${variables.SPACES[3]}px;
+  display: flex;
+  justify-content: space-between;
+  max-width: ${MAX_WIDTH}px;
+  padding: ${variables.SPACES[3]}px;
+  width: 100%;
 `;
 
 export const Title = styled.h1`
-  font-size: ${variables.FS_MEDIUM};
   color: ${({ theme }) => theme.text};
-  letter-spacing: 1.4px;
+  font-size: ${variables.FS_MEDIUM}px;
+  letter-spacing: ${variables.LETTER_SPACING}px;
 `;
 
 export const List = styled.ul`
-  margin-left: auto;
-  width: 180px;
   display: flex;
   justify-content: space-between;
+  margin-left: auto;
+  width: ${WIDTH}px;
 `;
+
+export const Nav = styled.nav``;

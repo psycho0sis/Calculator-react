@@ -1,24 +1,25 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { Container, List, Title } from 'components/Header/style';
+import { Container, List, Title, Nav } from 'components/Header/style';
 
-const Header = () => {
+import { links } from 'constants/links';
+
+export const Header = () => {
   return (
     <Container>
       <Title>Calculator App</Title>
-      <nav className="header__nav">
+      <Nav>
         <List>
-          <NavLink className="linkDiactive" to="/home" activeClassName={'linkActive'}>
-            Home
-          </NavLink>
-          <NavLink className="linkDiactive" to="/settings" activeClassName={'linkActive'}>
-            Settings
-          </NavLink>
+          {links.map(({ id, className, content, link }) => {
+            return (
+              <NavLink className={className} key={id} exact activeClassName="linkActive" to={link}>
+                {content}
+              </NavLink>
+            );
+          })}
         </List>
-      </nav>
+      </Nav>
     </Container>
   );
 };
-
-export default Header;

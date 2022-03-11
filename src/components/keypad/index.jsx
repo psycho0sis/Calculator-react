@@ -1,26 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Button from 'components/Button/index';
+import { Button } from 'components/Button/';
 
 import { numberButtons } from 'constants/buttons';
 
 import { Grid } from './style';
 
-const KeyPad = (props) => {
-  const { handleClick } = props;
-
+export const KeyPad = ({ handleClick }) => {
   return (
     <Grid>
-      {numberButtons.map((button) => {
-        return (
-          <Button
-            key={button.id}
-            value={button.context}
-            handleClick={handleClick}
-            type={button.type}
-          />
-        );
+      {numberButtons.map(({ id, context, type }) => {
+        return <Button key={id} value={context} handleClick={handleClick} type={type} />;
       })}
     </Grid>
   );
@@ -29,5 +20,3 @@ const KeyPad = (props) => {
 KeyPad.propTypes = {
   handleClick: PropTypes.func
 };
-
-export default KeyPad;

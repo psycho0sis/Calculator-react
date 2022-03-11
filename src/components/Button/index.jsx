@@ -1,21 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { MyButton } from './style';
+import { ButtonContainer } from './style';
 
-const Button = (props) => {
-  const { value, handleClick, type } = props;
+export const Button = ({ value, handleClick, type }) => {
+  const onButtonClick = (value) => () => {
+    handleClick(value);
+  };
 
   return (
-    <MyButton
-      className={`${type || ''}`}
-      onClick={() => handleClick(value)}
+    <ButtonContainer
+      className={type || ''}
+      onClick={onButtonClick(value)}
       value={value}
       key={value}
       type={type}
-      data-name={value === '.' ? 'coma' : null}>
+      data-name={value === '.' ? 'coma' : null}
+    >
       {value}
-    </MyButton>
+    </ButtonContainer>
   );
 };
 
@@ -24,4 +27,3 @@ Button.propTypes = {
   handleClick: PropTypes.func,
   type: PropTypes.string
 };
-export default Button;

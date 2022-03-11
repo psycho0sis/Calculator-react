@@ -1,12 +1,15 @@
-import styled from 'styled-components';
 import * as variables from 'styles/variables';
 
+import styled from 'styled-components';
+
+const HEIGHT = 80;
+
 export const DisplayText = styled.div`
-  width: 100%;
-  height: 80px;
+  border-bottom: ${variables.SPACES[1]}px solid ${variables.COLORS.buttonsBorder};
   font-weight: ${variables.FW_NORMAL};
-  font-size: ${variables.FS_MEDIUM};
-  border-bottom: 2px solid #929292;
-  padding: 40px 30px 20px 30px;
+  font-size: ${variables.FS_MEDIUM}px;
+  height: ${HEIGHT}px;
+  padding: ${variables.SPACES[5]}px ${variables.SPACES[4]}px ${variables.SPACES[3]}px;
   text-align: right;
+  width: 100%;
 `;
