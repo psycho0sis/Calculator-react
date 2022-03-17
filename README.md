@@ -32,4 +32,4 @@
 
 #### Deploy
 
-https://psycho0sis.github.io/Calculator-react/#/home
+https://psycho0sis.github.io/Calculator-react/#/
